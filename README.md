@@ -25,8 +25,7 @@ Complete the following tasks:
 - Make sure the website runs correctly.
 
 ### 4. Add a New Feature
-Once you've restored the website, it's time to make it better!
-Implement a simple search bar that allows users to search through the tasks on the task board.
+Once you've restored the website, it's time to make it better! Think of a feature or improvement that you believe would make the website better.
 
 ### 5. Work with Branches
 - Create a new branch called `fixed-website`.
