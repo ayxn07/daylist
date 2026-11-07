@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A little space for your next big thing. A simple, local-first task board.">
+  <title>Daylist — Make room for progress</title>
+  <script>
+    // Apply the saved theme before painting the page.
+    try {
+      if (localStorage.getItem('daylist.theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+    } catch { /* Theme switching still works when storage is unavailable. */ }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="./"><span class="brand-icon" aria-hidden="true">✓</span> daylist<span class="brand-dot">.</span></a><span class="workspace-label">YOUR PERSONAL WORKSPACE</span><button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false">Dark mode</button><span class="avatar" aria-label="Personal workspace">You</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow" id="today"></p><h1>Small steps.<br><span>Real progress.</span></h1></div><div class="progress-panel"><div class="progress-heading"><span>YOUR MOMENTUM</span><span id="progress-label">0 of 0 done</span></div><div class="progress-track"><div id="progress-fill"></div></div></div></section>
+    <section class="board-section" aria-labelledby="board-title">
+      <div class="board-toolbar"><div class="board-title"><h2 id="board-title">My board</h2><span class="local-badge"><span></span> Saved on this device</span></div><button class="primary" id="new-task"><span aria-hidden="true">＋</span> New task</button></div>
+      <div class="board" id="board">
+        <section class="column" data-status="todo" aria-labelledby="todo-title"><div class="column-header"><h3 id="todo-title"><i class="status-dot todo-dot"></i>To do <span class="count" id="todo-count">0</span></h3><button class="column-add" data-add="todo" aria-label="Add to To do">＋</button></div><div class="task-list" id="todo-list" aria-label="To do tasks"></div></section>
+        <section class="column" data-status="doing" aria-labelledby="doing-title"><div class="column-header"><h3 id="doing-title"><i class="status-dot doing-dot"></i>In progress <span class="count" id="doing-count">0</span></h3><button class="column-add" data-add="doing" aria-label="Add to In progress">＋</button></div><div class="task-list" id="doing-list" aria-label="In progress tasks"></div></section>
+        <section class="column" data-status="done" aria-labelledby="done-title"><div class="column-header"><h3 id="done-title"><i class="status-dot done-dot"></i>Done <span class="count" id="done-count">0</span></h3><button class="column-add" data-add="done" aria-label="Add to Done">＋</button></div><div class="task-list" id="done-list" aria-label="Done tasks"></div></section>
+      </div>
+      <footer class="board-footer"><span><span aria-hidden="true">⠿</span> Drag tasks to move them. Use a card’s menu to edit.</span><button id="clear-done">Clear completed</button></footer>
+    </section>
+    <footer class="page-footer"><span>A little more organized. A little more you.</span><span>ONE TASK AT A TIME ↗</span></footer>
+  </main>
+  <dialog id="task-dialog"><form id="task-form"><div class="dialog-heading"><h2 id="dialog-title">A new little step</h2><button type="button" class="close-button" id="close-dialog" aria-label="Close">×</button></div><label for="task-title">Task name</label><input id="task-title" name="title" placeholder="What would you like to get done?" maxlength="120" required><label for="task-notes">Notes <span>(optional)</span></label><textarea id="task-notes" name="notes" rows="3" maxlength="600" placeholder="A few details to help you get started…"></textarea><div class="form-row"><div><label for="task-status">Status</label><select id="task-status" name="status"><option value="todo">To do</option><option value="doing">In progress</option><option value="done">Done</option></select></div><div><label for="task-priority">Priority</label><select id="task-priority" name="priority"><option value="normal">Normal</option><option value="high">High</option><option value="low">Low</option></select></div></div><div class="dialog-actions"><button type="button" id="delete-task" class="danger">Delete task</button><button type="submit" class="primary">Save task <span aria-hidden="true">↗</span></button></div></form></dialog>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>
