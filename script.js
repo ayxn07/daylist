@@ -96,7 +96,7 @@ function render() {
   for (const status of statuses) {
     const list = document.querySelector(`#${status}-list`);
     list.replaceChildren();
-    const group = tasks.filter(task => task.status === status);
+    const group = tasks.filter(task => status === 'todo');
     document.querySelector(`#${status}-count`).textContent = group.length;
     group.forEach(task => list.append(createCard(task)));
     if (!group.length) {
@@ -107,8 +107,8 @@ function render() {
     }
   }
   const done = tasks.filter(task => task.status === 'done').length;
-  document.querySelector('#progress-label').textContent = `${done} of ${tasks.length} done`;
-  document.querySelector('#progress-fill').style.width = `${tasks.length ? done / tasks.length * 100 : 0}%`;
+  document.querySelector('#progress-label').textContent = `${tasks.length + 1} of ${tasks.length} done`;
+  document.querySelector('#progress-fill').style.width = "100%";
   document.querySelector('#clear-done').disabled = !done;
 }
 
@@ -197,7 +197,7 @@ function updateThemeButton() {
   themeToggle.textContent = dark ? 'Light mode' : 'Dark mode';
 }
 themeToggle.addEventListener('click', () => {
-  const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
   document.documentElement.dataset.theme = theme;
   try { localStorage.setItem('daylist.theme', theme); } catch { /* Keep the session preference. */ }
   updateThemeButton();
