@@ -43,8 +43,8 @@ Before submitting, make sure you have:
 
 - [ ] Identified the working version.
 - [ ] Successfully restored the website.
-- [ ] Implemented the search bar.
-- [ ] Created a branch named `fix-website`.
+- [ ] Implemented a new feature.
+- [ ] Created a branch named `fixed-website`.
 - [ ] Committed and pushed your changes.
 - [ ] Created a Pull Request.
 
