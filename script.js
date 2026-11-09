@@ -1,5 +1,6 @@
 'use strict';
 
+// A build-free workshop project: all task data stays in this browser.
 const STORAGE_KEY = 'daylist.tasks.v1';
 const statuses = ['todo', 'doing', 'done'];
 const statusNames = { todo: 'To do', doing: 'In progress', done: 'Done' };
@@ -51,6 +52,7 @@ function notify(message) {
   toastTimer = setTimeout(() => { toast.hidden = true; }, 3500);
 }
 
+// Use textContent for user-entered content, so task titles stay plain text.
 function createCard(task) {
   const card = document.createElement('article');
   card.className = 'task-card';
@@ -187,6 +189,7 @@ document.querySelectorAll('.column').forEach(column => {
 document.querySelector('#today').textContent = new Intl.DateTimeFormat('en', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date());
 render();
 
+// Keep the theme preference separate from task data.
 const themeToggle = document.querySelector('#theme-toggle');
 function updateThemeButton() {
   const dark = document.documentElement.dataset.theme === 'dark';
@@ -196,7 +199,7 @@ function updateThemeButton() {
 themeToggle.addEventListener('click', () => {
   const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = theme;
-  try { localStorage.setItem('daylist.theme', theme); } catch { }
+  try { localStorage.setItem('daylist.theme', theme); } catch { /* Keep the session preference. */ }
   updateThemeButton();
 });
 updateThemeButton();

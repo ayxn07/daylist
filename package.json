@@ -1,0 +1,12 @@
+{
+  "name": "daylist-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build-free task board with browser regression tests",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2"
+  }
+}
