@@ -35,3 +35,6 @@ POST /api/schedule
 → [ { "title": "Write blog post", "startTime": "09:00", "duration": 120 }, … ]   // always 3 items
 ```
 An empty `text` returns the built-in demo dump. The mock "LLM" splits the text into intents and works out durations from phrases like `2h`, `30 min`, and keywords. It reads time hints such as `at 3pm` and `evening`, then lays the tasks out without overlaps. To switch to a real model, change `mockLlmSchedule` in `lib/mock-llm.ts` to return the same `ScheduledTaskDraft[]` shape. The route and the client already validate it.
+
+Application fully generated using Claude 3.5 Sonnet
+Orchestrated and prompted by @abrarmohamedfarook-web.
